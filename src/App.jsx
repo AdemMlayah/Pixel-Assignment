@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
+import Page from "./components/PageList";
+import PagesData from "./Dummydata";
+import LineDropDown from "./components/LineDropDown";
+import DoneBtn from "./components/DoneBtn";
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="flex justify-center h-screen w-screen items-center">
+        <div className="w-[370px] h-[326px] shadow-custom-lg 	rounded-md pt-2 ">
+          <Page title={"All Pages"} />
+          <LineDropDown />
+          <div className="overflow-auto h-[164px] w-[370px] no-scrollbar">
+            {PagesData.map((e) => (
+              <Page key={e.id} title={e.title} />
+            ))}
+          </div>
+          <LineDropDown />
+          <DoneBtn />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
